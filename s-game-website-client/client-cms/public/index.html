@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="./iconfont.css" />
+    <!--<script src="//at.alicdn.com/t/font_1104271_so151lbumpq.js"></script>-->
+    <title>网站后台管理系统</title>
+    <style>
+      #loader {
+        display: flex;
+        margin: 10px auto;
+        z-index: 9999;
+        transition: 0.3s ease-in-out; /*动画以慢速开始和结束*/
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #fff;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      .loading-box {
+        background: no-repeat center/40px url('./static/img/spinner.svg');
+        margin-top:  -20px;
+        margin-left: -20px;
+        width: 40px;
+        height: 40px;
+        position: fixed;
+        top: 45%;
+        left: 45%;
+        z-index: 1;
+        -webkit-animation: loader 1s linear infinite; /*Safari and Chrome*/
+        animation: loader 1s linear infinite; /*IE9以上支持*/
+      }
+
+      .loading-text {
+        position: fixed;
+        text-align: left;
+        left: 50%;
+        top: 44%;
+        font-size: 20px;
+        color: #409EFF;
+      }
+
+      /*loading转圈动画*/
+      @keyframes loader {
+        0% {
+          -webkit-transform: rotate(0deg) translateZ(0);
+          transform: rotate(0deg) translateZ(0);
+        }
+        100% {
+          -webkit-transform: rotate(360deg) translateZ(0);
+          transform: rotate(360deg) translateZ(0);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <div id="loader">
+        <!--<div class="spinner spinner&#45;&#45;rotate-square-2"></div>-->
+        <!--<img src="./static/img/logo.png" alt="" class="loader-logo">-->
+      <div class="loading-box" ></div>
+      <div class="loading-text">加载中...</div>
+    </div>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  </body>
+</html>
