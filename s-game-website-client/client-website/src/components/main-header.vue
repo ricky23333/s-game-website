@@ -148,7 +148,7 @@
         let num = this.mainRouterIndex;
         this.selectNavIndex = num;
         if (num >= 0) document.title = this.guestDate.router_type[num].tab_name;
-        else document.title = 's-game';
+        else document.title = 'StellarBug';
       },
 
       async handleClickSearchBtn(tempKeyword) {
