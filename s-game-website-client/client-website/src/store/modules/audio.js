@@ -10,7 +10,7 @@ const state = {
   //未勾选记住我的选择时，仅在刷新前应用音乐播放器设置
   tempAutoPlayOption: false,
   showAudioPlayerFlag: true,
-  showAudioOptionBoxFlag: true,
+  showAudioOptionBoxFlag: false,
   isPlayingFlag:false,
   //正在播放的文章内的音乐，而非播放器列表内的音乐
   currentPlayingArticleAudioUrl:null,

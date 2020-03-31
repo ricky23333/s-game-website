@@ -17,6 +17,7 @@
 
       <div class="background-planets-container">
         <canvas id="planetBgCanvas" style="display: none"></canvas>
+        <canvas id="planetMaskCanvas" style="display: none"></canvas>
         <div id="planetsContainer"></div>
       </div>
 
@@ -39,9 +40,9 @@
         preloadImgsCount: 0,
         preloadImgsPercent: '',
         planetCurrentRotate: 0,
-        planetRotateSpeed: 0.2,
+        planetRotateSpeed: 0.1,
         moonCurrentRotate: 0,
-        moonRotateSpeed: 0.05,
+        moonRotateSpeed: 0.15,
         switchBgTimer: 0,
 
         currentBackgroundOpacity: 1.0,
@@ -49,8 +50,10 @@
         bgFadeSpeed: 0.05,
         playBgFadeAnimFlag: false,
 
-        createBlingStarInterval: 2500,
+        createBlingStarInterval: 5000,
         pauseBlingStarFlag: false,
+        shadowUrl: 'static/images/homepage/bg-shadow.png',
+        randomPlanetBgIndexAry: [],
         srcImgUrl: [
           {
             url: 'static/images/homepage/bg-star.png',
@@ -77,14 +80,14 @@
             perCutHeight: 256,
             finalCombainRowNum: 1,
             finalCombainLineNum: 1,
-            maxRandomIndex: 7,
+            maxRandomIndex: 8,
             imgCanvasId: 'nebulaBgCanvas',
             imgId: 'nebulaBgImg',
           },
           {
             url: 'static/images/homepage/bg-planet.png',
-            perCutHeight: 256,
-            maxRandomIndex: 0,
+            perCutHeight: 128,
+            maxRandomIndex: 11,
           },
         ],
         srcStarBlingGifUrl: [
@@ -120,11 +123,17 @@
         this.preloadImgsCount = 0;
         for (let i = 0; i < this.srcImgUrl.length; i++) {
           let item = this.srcImgUrl[i];
-          let image = new Image()
+          let image = new Image();
           image.src = item.url;
+          image.setAttribute("crossOrigin", 'Anonymous');
           image.onload = async () => {
             if (i === 3) {
-              await this.createPlanetAndMoon(image, item.perCutHeight, item.maxRandomIndex);
+              let shadowImg = new Image();
+              shadowImg.src = this.shadowUrl;
+              shadowImg.setAttribute("crossOrigin", 'Anonymous');
+              shadowImg.onload = async () => {
+                await this.createPlanetAndMoon(image, item.perCutHeight, item.maxRandomIndex, shadowImg);
+              }
             } else {
               await this.cutAndCombainImg(image, item.perCutHeight, item.finalCombainRowNum, item.finalCombainLineNum, item.maxRandomIndex, item.imgCanvasId, item.imgId, item.probability, item.scaleAdjustNum);
             }
@@ -208,24 +217,31 @@
         finalImg.style.backgroundImage = 'url("' + imgCanvas.toDataURL("image/png") + '")';//设置背景图的的地址
       },
 
-      async createPlanetAndMoon(srcImg, srcImgPerCutHeight, maxRandomIndex) {
+      async createPlanetAndMoon(srcImg, srcImgPerCutHeight, maxRandomIndex, shadowImg) {
         let planetContent = document.getElementById('planetsContainer');
         this.removeAllChildEle(planetContent);
         let imgCanvas = document.getElementById('planetBgCanvas');
+        let maskCanvas = document.getElementById('planetMaskCanvas');
         imgCanvas.width = srcImg.width;
         imgCanvas.height = srcImgPerCutHeight;
+        maskCanvas.width = maskCanvas.height = srcImgPerCutHeight;
         let canvasContext = imgCanvas.getContext("2d");
+        let maskCanvasContext = maskCanvas.getContext("2d");
         let moonCount = 0;
         if (document.body.scrollWidth < 576) {
           moonCount = Math.ceil(Math.random() * 2);
         } else {
           moonCount = Math.ceil(Math.random() * 3);
         }
+        let randomBgIndex = 0;
+        this.setRandomPlanetBgIndex(maxRandomIndex);
 
         let leftPlanetPos = 30 + Math.ceil(Math.random() * 40);
         let topPlanetPos = 30 + Math.ceil(Math.random() * 40);
-        let randomIndex = Math.floor(Math.random() * (maxRandomIndex + 1));
+        let randomIndex = this.randomPlanetBgIndexAry[randomBgIndex];
+        randomBgIndex++;
         canvasContext.drawImage(srcImg, 0, srcImgPerCutHeight * randomIndex, srcImg.width, srcImgPerCutHeight, 0, 0, srcImg.width, srcImgPerCutHeight);
+        maskCanvasContext.drawImage(shadowImg, 0, 0, 64, 64, 0, 0, srcImgPerCutHeight, srcImgPerCutHeight);
 
         let scaleNum = 0.2;
         if (document.body.scrollWidth < 576) {
@@ -249,11 +265,14 @@
         planetContent.appendChild(plantDiv);
 
         let planetBgImg = new Image();
+        let planetMaskImg = new Image();
         planetBgImg.src = imgCanvas.toDataURL("image/png");
-        planetBgImg.style.height = plantDiv.style.height;
+        planetMaskImg.src = maskCanvas.toDataURL("image/png");
+        planetMaskImg.style.width = planetMaskImg.style.height = planetBgImg.style.height = plantDiv.style.height;
         planetBgImg.style.width = bgWidth + 'px';
-        planetBgImg.style.position = 'absolute';
+        planetMaskImg.style.position = planetBgImg.style.position = 'absolute';
         plantDiv.appendChild(planetBgImg);
+        plantDiv.appendChild(planetMaskImg);
         this.planetRotateAnim(planetBgImg, true);
 
         for (let j = 0; j < moonCount; j++) {
@@ -261,7 +280,8 @@
           let topPos = (topPlanetPos - 35) + Math.ceil(Math.random() * 70);
           if (leftPos < 0 || topPos < 0) continue;
 
-          let randomIndex = Math.floor(Math.random() * (maxRandomIndex + 1));
+          let randomIndex = this.randomPlanetBgIndexAry[randomBgIndex];
+          randomBgIndex++;
           canvasContext.drawImage(srcImg, 0, srcImgPerCutHeight * randomIndex, srcImg.width, srcImgPerCutHeight, 0, 0, srcImg.width, srcImgPerCutHeight);
 
           let scaleNum = 0.2;
@@ -287,11 +307,15 @@
           planetContent.appendChild(moonDiv);
 
           let moonBgImg = new Image();
+          let moonMaskImg = new Image();
           moonBgImg.src = imgCanvas.toDataURL("image/png");
+          moonMaskImg.src = maskCanvas.toDataURL("image/png");
           moonBgImg.style.height = moonDiv.style.height;
           moonBgImg.style.width = bgWidth + 'px';
-          moonBgImg.style.position = 'absolute';
+          moonMaskImg.style.width = moonMaskImg.style.height = moonDiv.style.height;
+          moonMaskImg.style.position = moonBgImg.style.position = 'absolute';
           moonDiv.appendChild(moonBgImg);
+          moonDiv.appendChild(moonMaskImg);
           this.planetRotateAnim(moonBgImg, false);
         }
       },
@@ -299,11 +323,11 @@
       planetRotateAnim(divElement, isPlanet) {
         if (isPlanet) {
           this.planetCurrentRotate -= this.planetRotateSpeed;
-          if (this.planetCurrentRotate < -290) this.planetCurrentRotate = 0;
+          if (this.planetCurrentRotate < -295) this.planetCurrentRotate = 0;
           divElement.style.left = this.planetCurrentRotate + '%'
         } else {
           this.moonCurrentRotate -= this.moonRotateSpeed;
-          if (this.moonCurrentRotate < -290) this.moonCurrentRotate = 0;
+          if (this.moonCurrentRotate < -295) this.moonCurrentRotate = 0;
           divElement.style.left = this.moonCurrentRotate + '%'
         }
         let _this = this;
@@ -317,7 +341,17 @@
         for (let i = childs.length - 1; i >= 0; i--) {
           parentEle.removeChild(childs[i]);
         }
-      }
+      },
+
+      setRandomPlanetBgIndex(length) {
+        this.randomPlanetBgIndexAry = [];
+        for (var i = 0; i < length; i++) {
+          this.randomPlanetBgIndexAry.push(i);
+        }
+        this.randomPlanetBgIndexAry.sort(function () {
+          return 0.5 - Math.random();
+        });
+      },
 
       // createImg(srcImgUrl) {
       //   var imgObject = new Image();
@@ -414,10 +448,10 @@
 
   @keyframes nebula-float {
     0% {
-      -moz-transform: translateX(0px);
-      -o-transform: translateX(0px);
-      -webkit-transform: translateX(0px);
-      transform: translateX(0px);
+      -moz-transform: translateX(0%);
+      -o-transform: translateX(0%);
+      -webkit-transform: translateX(0%);
+      transform: translateX(0%);
     }
     50% {
       -moz-transform: translateX(15%);
@@ -426,10 +460,31 @@
       transform: translateX(15%);
     }
     100% {
-      -moz-transform: translateX(0px);
-      -o-transform: translateX(0px);
-      -webkit-transform: translateX(0px);
-      transform: translateX(0px);
+      -moz-transform: translateX(0%);
+      -o-transform: translateX(0%);
+      -webkit-transform: translateX(0%);
+      transform: translateX(0%);
+    }
+  }
+
+  @keyframes nebula-float-ie {
+    0% {
+      -moz-transform: translateX(0%);
+      -o-transform: translateX(0%);
+      -webkit-transform: translateX(0%);
+      transform: translateX(0%);
+    }
+    50% {
+      -moz-transform: translateX(15%);
+      -o-transform: translateX(15%);
+      -webkit-transform: translateX(15%);
+      transform: translateX(15%);
+    }
+    100% {
+      -moz-transform: translateX(0%);
+      -o-transform: translateX(0%);
+      -webkit-transform: translateX(0%);
+      transform: translateX(0%);
     }
   }
 

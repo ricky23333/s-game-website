@@ -16,7 +16,6 @@ export default class PublicInformation {
 
         info.router_type.forEach((item) => {
             item.navInfo = [];
-
             if (item.child_types) {
                 let typeNameAry = item.child_types.split('*');
                 typeNameAry.forEach((item1) => {
@@ -48,8 +47,8 @@ export default class PublicInformation {
                     item.navInfo.push(tempNavInfo);
                 });
             }
-
         });
+        console.log('routerInfo', info.router_type);
         return new PublicInformation(
             info.router_type,
         )
