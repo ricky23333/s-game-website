@@ -37,7 +37,6 @@
       }
     },
 
-
     watch: {
       '$route'(to, from) {
         this.setArticleType();

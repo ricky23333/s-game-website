@@ -66,7 +66,6 @@
       fullHeight(val) {
         if (!this.resizeHeightFlag) {
           this.fullHeight = val
-          console.log(11111, this.fullHeight);
           this.resizeHeightFlag = true
           let that = this
           setTimeout(function () {

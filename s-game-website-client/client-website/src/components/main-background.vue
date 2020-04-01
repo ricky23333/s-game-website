@@ -121,6 +121,7 @@
         if (this.playBgFadeAnimFlag) return;
         this.pauseBlingStarFlag = true;
         this.preloadImgsCount = 0;
+        this.$store.state.loading.isLoading = true;
         for (let i = 0; i < this.srcImgUrl.length; i++) {
           let item = this.srcImgUrl[i];
           let image = new Image();
@@ -145,6 +146,7 @@
         }
         this.pauseBlingStarFlag = false;
         if (!skipFadeAnim) this.backgroundFadeInFadeOutAnim();
+        this.$store.state.loading.isLoading = false;
       },
 
       backgroundFadeInFadeOutAnim() {
