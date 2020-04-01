@@ -77,7 +77,7 @@
           },
           {
             url: 'static/images/homepage/bg-nebula.png',
-            perCutHeight: 256,
+            perCutHeight: 128,
             finalCombainRowNum: 1,
             finalCombainLineNum: 1,
             maxRandomIndex: 8,
@@ -86,7 +86,7 @@
           },
           {
             url: 'static/images/homepage/bg-planet.png',
-            perCutHeight: 128,
+            perCutHeight: 32,
             maxRandomIndex: 11,
           },
         ],
@@ -189,7 +189,7 @@
         }, that.createBlingStarInterval);
       },
 
-      async cutAndCombainImg(srcImg, srcImgPerCutHeight, finalImgRowNum, finalImgLineNum, maxRandomIndex, imgCanvasId, finalImgId, probability, scaleAdjustNum) {
+      async cutAndCombainImg(srcImg, srcImgPerCutHeight, finalImgRowNum, finalImgLineNum, maxRandomIndex, imgCanvasId, finalImgId, probability, scaleAdjustNum, scaleNum) {
         //将背景图资源剪切成多块，随机取出，拼贴形成新的背景图
         let imgCanvas = document.getElementById(imgCanvasId);
         let canvasContext = imgCanvas.getContext("2d");
@@ -203,7 +203,7 @@
             }
             let scaleNum = 1.0;
             if (scaleAdjustNum) {
-              scaleNum = (1.0 - scaleAdjustNum) + Math.random() * scaleAdjustNum * 2;
+              scaleNum = (scaleNum - scaleAdjustNum) + Math.random() * scaleAdjustNum * 2;
             }
             let randomIndex = Math.floor(Math.random() * (maxRandomIndex + 1));
             canvasContext.drawImage(srcImg, 0, srcImgPerCutHeight * randomIndex, srcImg.width, srcImgPerCutHeight, i * srcImg.width, j * srcImgPerCutHeight, srcImg.width * scaleNum, srcImgPerCutHeight * scaleNum);
@@ -243,11 +243,11 @@
         canvasContext.drawImage(srcImg, 0, srcImgPerCutHeight * randomIndex, srcImg.width, srcImgPerCutHeight, 0, 0, srcImg.width, srcImgPerCutHeight);
         maskCanvasContext.drawImage(shadowImg, 0, 0, 64, 64, 0, 0, srcImgPerCutHeight, srcImgPerCutHeight);
 
-        let scaleNum = 0.2;
+        let scaleNum = 1.0;
         if (document.body.scrollWidth < 576) {
-          scaleNum = 0.2 + Math.random() * 0.2;
+          scaleNum = 1 + Math.random() * 1.0;
         } else {
-          scaleNum = 0.4 + Math.random() * 0.35;
+          scaleNum = 2 + Math.random() * 1.15;
         }
 
         let planetWidth = srcImgPerCutHeight * scaleNum;
@@ -284,11 +284,11 @@
           randomBgIndex++;
           canvasContext.drawImage(srcImg, 0, srcImgPerCutHeight * randomIndex, srcImg.width, srcImgPerCutHeight, 0, 0, srcImg.width, srcImgPerCutHeight);
 
-          let scaleNum = 0.2;
+          let scaleNum = 1.0;
           if (document.body.scrollWidth < 576) {
-            scaleNum = 0.07 + Math.random() * 0.1;
+            scaleNum = 0.35 + Math.random() * 0.5;
           } else {
-            scaleNum = 0.1 + Math.random() * 0.25;
+            scaleNum = 0.5 + Math.random() * 1.25;
           }
 
           let moonWidth = srcImgPerCutHeight * scaleNum;
