@@ -2,19 +2,18 @@
   <section class="slide-nav-banner-container">
     <div class="slide-nav-banner-box">
       <div class="audio-player-box">
-        <audio-player/>
-        <!--<audio controls>-->
-        <!--<source src="/static/test-audio/am-boy - Seaward Classic.mp3" type="audio/mp3">-->
-        <!--</audio>-->
+        <audio-player class="audio-player"/>
       </div>
+
       <div :class="toTopBtnFlag?'nav-totop-box-active':'nav-totop-box'">
-        <el-tooltip content="回到顶部" placement="left" effect="light" :open-delay="2000">
+        <el-tooltip content="回到顶部" placement="left" effect="light" :open-delay="(toTopBtnFlag&&!isMobile)?1000:9999999">
           <div class="go-top" @click="backTop"><i class="icon el-icon-arrow-up"></i></div>
         </el-tooltip>
       </div>
+
       <div class="nav-banner-container">
         <div class="nav-banner-box">
-          <el-tooltip content="掷个骰子" placement="top" effect="light" :open-delay="500"
+          <el-tooltip content="掷个骰子" placement="top" effect="light" :open-delay="isMobile?99999999:1000"
                       v-if="this.$route.matched[0].name === '首页'||documentWidth>=1140">
             <div class="switch-bg-btn" id="switchBgBtn"
                  @click.stop="handleClickPublic">
@@ -22,7 +21,7 @@
             </div>
           </el-tooltip>
 
-          <el-tooltip content="无障碍浏览" placement="top" effect="light" :open-delay="500">
+          <el-tooltip content="无障碍浏览" placement="top" effect="light" :open-delay="isMobile?99999999:1000">
             <div :class="showHelpToolsFlag? 'disabled-people-box-select': 'disabled-people-box'"
                  id="disabled-people-btn"
                  @click.stop="handleClickPublic">
@@ -30,14 +29,14 @@
             </div>
           </el-tooltip>
 
-          <el-tooltip content="简/繁体切换" placement="top" effect="light" :open-delay="500">
+          <el-tooltip content="简/繁体切换" placement="top" effect="light" :open-delay="isMobile?99999999:1000">
             <div class="languge-box" @click.stop="handleClickSwitchLanguge">
               <span v-if="isSimplified">繁</span>
               <span v-else>簡</span>
             </div>
           </el-tooltip>
 
-          <el-tooltip content="分享" placement="top" effect="light">
+          <el-tooltip content="分享" placement="top" effect="light" :open-delay="isMobile?99999999:1000">
             <div :class="shareFlag? 'share-box-select': 'share-box'" id="share-box-btn"
                  @click.stop="handleClickPublic">
               <i class="iconfenxiang3 el-iconfont" id="share-box-btn-img"></i>
@@ -115,6 +114,9 @@
         showHelpToolsFlag: state => state.helpTools.showFlag,
         isSimplified: state => state.translateLanguge.isSimplified,
         audioListDate: state => state.audio.audioListDate,
+        isMobile() {
+          return this.$store.getters['user/checkIsMobile'];
+        },
       }),
 
       isArticlePage() {
@@ -717,26 +719,30 @@
       flex-wrap: wrap;
       flex-direction: column-reverse;
       align-items: right;
-
+      width: 0px;
       .audio-player-box {
+        width: 100%;
         z-index: 5001;
-        align-items: right;
-        margin-left: 50px;
+        /*align-items: right;*/
+        /*margin-left: 50px;*/
         transition: all .5s ease;
         -webkit-transition: all .5s ease; /* Safari */
         -moz-transition: all .5s ease;
         -o-transition: all .5s ease;
+        .audio-player {
+          margin-left: -160px;
+        }
       }
 
       .nav-totop-box, .nav-totop-box-active {
+        width: 100%;
         opacity: 1;
         transition: all .5s ease;
         -webkit-transition: all .5s ease; /* Safari */
         -moz-transition: all .5s ease;
         -o-transition: all .5s ease;
-        padding-right: 0px;
         .go-top {
-          float: right;
+          z-index: 5001;
           margin-bottom: 15px;
           cursor: pointer;
           background-color: rgba(230, 230, 230, 1.0);
@@ -744,6 +750,7 @@
           font-size: 25px;
           width: 35px;
           height: 35px;
+          margin-left: -35px;
           border-radius: 50%;
           box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.4);
           border: 1px solid #EBEEF5;
@@ -831,25 +838,26 @@
               list-style: none;
               background: rgba(250, 250, 250, 1.0);
               box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.2);
-              width: 175px;
-              height: 60px;
-              margin-left: -185px;
-              margin-top: -50px;
+              width: 135px;
+              height: 40px;
+              margin-left: -145px;
+              margin-top: -38px;
               align-items: center;
+              border-radius: 2px;
               .button-container {
                 border-radius: 4px;
                 background: rgba(220, 220, 220, 1.0);
-                width: 45px;
-                height: 45px;
-                margin-left: 10px;
+                width: 35px;
+                height: 35px;
+                margin-left: 7px;
                 &:hover {
                   background: rgba(230, 230, 230, 1.0);
                 }
                 img {
                   margin-top: 2px;
                   margin-left: 2px;
-                  width: 40px;
-                  height: 40px;
+                  width: 30px;
+                  height: 30px;
                   -webkit-user-select: none;
                   -moz-user-select: none;
                   -ms-user-select: none;

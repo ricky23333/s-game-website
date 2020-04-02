@@ -1006,7 +1006,9 @@
           }
         }
       }
-
+      .audio-box-expand {
+        margin-left: -220px;
+      }
       .audio-box {
         width: 160px;
         .progress-box {

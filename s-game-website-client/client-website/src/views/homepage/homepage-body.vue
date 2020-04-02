@@ -182,66 +182,7 @@
 </script>
 
 <style lang="scss" scoped>
-  .main {
-    position: relative;
-    margin: 0px auto;
-    width: 100%;
-    height: 100%;
-    .container {
-      position: relative;
-      top: 120px;
-      .container-wrap {
-        display: flex;
-        flex-wrap: wrap;
-        .game-logo {
-          position: relative;
-          margin: 0px auto;
-          width: 40%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          img {
-            width:auto;
-            height:auto;
-            max-width:100%;
-            max-height:100%;
-          }
-        }
-        .options-container {
-          width: 100%;
-          list-style: none;
-          text-align: center;
-          li {
-            width: 100px;
-            margin: 20px auto;
-            cursor: pointer;
-
-            .option-text, .option-text-select {
-              font-size: 0.7rem;
-              font-weight: bold;
-              letter-spacing: 0.2rem;
-            }
-            .option-text {
-              color: rgba(210, 210, 210, 1.0);
-            }
-            .option-text-select {
-              color: rgba(240, 240, 240, 1.0);
-            }
-
-            .select-icon {
-              position: absolute;
-              margin-top: 8px;
-              margin-left: -30px;
-              width: 20px;
-              height: 20px;
-            }
-          }
-        }
-      }
-    }
-  }
-
-  @media screen and (max-width: 575.98px) {
+  @media screen and (min-width: 576px) {
     .main {
       position: relative;
       margin: 0px auto;
@@ -256,21 +197,81 @@
           .game-logo {
             position: relative;
             margin: 0px auto;
-            width: 60%;
+            width: 40%;
             display: flex;
             align-items: center;
             justify-content: center;
             img {
-              width:auto;
-              height:auto;
-              max-width:100%;
-              max-height:100%;
+              width: auto;
+              height: auto;
+              max-width: 100%;
+              max-height: 100%;
             }
           }
           .options-container {
             width: 100%;
             list-style: none;
             text-align: center;
+            li {
+              width: 100px;
+              margin: 20px auto;
+              cursor: pointer;
+
+              .option-text, .option-text-select {
+                font-size: 0.7rem;
+                font-weight: bold;
+                letter-spacing: 0.2rem;
+              }
+              .option-text {
+                color: rgba(210, 210, 210, 1.0);
+              }
+              .option-text-select {
+                color: rgba(240, 240, 240, 1.0);
+              }
+
+              .select-icon {
+                position: absolute;
+                margin-top: 8px;
+                margin-left: -30px;
+                width: 20px;
+                height: 20px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 575.98px) {
+    .main {
+      width: 100%;
+      height: 100%;
+      .container {
+        position: relative;
+        top: 120px;
+        .container-wrap {
+          display: flex;
+          flex-wrap: wrap;
+          .game-logo {
+            margin: 0px auto;
+            width: 60%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            img {
+              width: auto;
+              height: auto;
+              max-width: 100%;
+              max-height: 100%;
+            }
+          }
+          .options-container {
+            width: 100%;
+            list-style: none;
+            text-align: center;
+            position: relative;
+
             li {
               width: 100px;
               margin: 30px auto;

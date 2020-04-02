@@ -1,6 +1,7 @@
 <template>
   <section class="footer-container">
-    <div class="footer-wrap-float" :style="'bottom:'+expandHeight+'px;'+'height:'+footerWrapInsideHeight+'px;'"
+    <div class="footer-wrap-float" @click.stop="handleExpandWithMobile"
+         :style="'bottom:'+expandHeight+'px;'+'height:'+footerWrapInsideHeight+'px;'"
          v-if="styleType===0">
       <footer class="footer-inner">
         <main-footer-info/>
@@ -26,6 +27,7 @@
 
     data() {
       return {
+        isMobile: false,
         footerWrapInsideHeight: 385,
         expandMaxHeight: -385,
         expandSpeed: 80,
@@ -59,10 +61,10 @@
     },
 
     mounted() {
-      let isMobile = this.$store.getters['user/checkIsMobile'];
-      if (isMobile) {
-        document.addEventListener('touchstart', this.handleTouchStart, true);
-        document.addEventListener('touchmove', this.handleTouchMove, true);
+      this.isMobile = this.$store.getters['user/checkIsMobile'];
+      if (this.isMobile) {
+        // document.addEventListener('touchstart', this.handleTouchStart, true);
+        // document.addEventListener('touchmove', this.handleTouchMove, true);
       } else {
         document.addEventListener('mousewheel', this.handleScroll, true) || document.addEventListener("DOMMouseScroll", this.handleScroll, false)
       }
@@ -71,10 +73,10 @@
     },
 
     destroyed() {
-      let isMobile = this.$store.getters['user/checkIsMobile'];
-      if (isMobile) {
-        document.removeEventListener('touchstart', this.handleTouchStart, true);
-        document.removeEventListener('touchmove', this.handleTouchMove, true);
+      this.isMobile = this.$store.getters['user/checkIsMobile'];
+      if (this.isMobile) {
+        // document.removeEventListener('touchstart', this.handleTouchStart, true);
+        // document.removeEventListener('touchmove', this.handleTouchMove, true);
       } else {
         document.removeEventListener('mousewheel', this.handleScroll) || document.removeEventListener("DOMMouseScroll", this.handleScroll, false);
       }
@@ -92,27 +94,39 @@
         if (this.expandHeight > 0) this.expandHeight = 0;
       },
 
-      handleTouchStart(e) {
-        e.preventDefault();
-        this.touchStartX = e.touches[0].pageX;
-        this.touchStartY = e.touches[0].pageY;
+      handleExpandWithMobile(e) {
+        this.isMobile = this.$store.getters['user/checkIsMobile'];
+        if (this.isMobile) {
+          if (this.expandHeight < 0) {
+            this.expandHeight = 0;np
+          } else {
+            if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+              this.expandHeight = this.expandMaxHeight;
+            }
+          }
+        }
       },
+      // handleTouchStart(e) {
+      //   e.preventDefault();
+      //   this.touchStartX = e.touches[0].pageX;
+      //   this.touchStartY = e.touches[0].pageY;
+      // },
 
-      handleTouchMove(e) {
-        e.preventDefault();
-        this.touchEndX = e.changedTouches[0].pageX;
-        this.touchEndY = e.changedTouches[0].pageY;
-        let xDis = this.touchEndX - this.touchStartX;
-        let yDis = this.touchEndY - this.touchStartY;
-        if (Math.abs(yDis) > Math.abs(xDis) && yDis > 0) {
-          this.expandHeight -= this.expandSpeed;
-        }
-        else if (Math.abs(yDis) > Math.abs(xDis) && yDis < 0) {
-          this.expandHeight += this.expandSpeed;
-        }
-        if (this.expandHeight < this.expandMaxHeight) this.expandHeight = this.expandMaxHeight;
-        if (this.expandHeight > 0) this.expandHeight = 0;
-      },
+      // handleTouchMove(e) {
+      //   e.preventDefault();
+      //   this.touchEndX = e.changedTouches[0].pageX;
+      //   this.touchEndY = e.changedTouches[0].pageY;
+      //   let xDis = this.touchEndX - this.touchStartX;
+      //   let yDis = this.touchEndY - this.touchStartY;
+      //   if (Math.abs(yDis) > Math.abs(xDis) && yDis > 0) {
+      //     this.expandHeight -= this.expandSpeed;
+      //   }
+      //   else if (Math.abs(yDis) > Math.abs(xDis) && yDis < 0) {
+      //     this.expandHeight += this.expandSpeed;
+      //   }
+      //   if (this.expandHeight < this.expandMaxHeight) this.expandHeight = this.expandMaxHeight;
+      //   if (this.expandHeight > 0) this.expandHeight = 0;
+      // },
 
       toPath(path) {
         this.$router.push(path);
@@ -120,11 +134,11 @@
 
       checkStyleType() {
         this.styleType = 0;
-        let isMobile = this.$store.getters['user/checkIsMobile'];
+        this.isMobile = this.$store.getters['user/checkIsMobile'];
         let isSmallScreen = window.matchMedia("(max-width: 575.98px)").matches;
-        if (isSmallScreen) this.expandMaxHeight = -720;
+        if (isSmallScreen) this.expandMaxHeight = -680;
         else this.expandMaxHeight = -385;
-        if (isMobile) {
+        if (this.isMobile) {
           if (this.$route.matched[0].name !== "首页") {
             this.styleType = 1;
           }
@@ -147,7 +161,7 @@
       position: fixed;
       bottom: 0px;
       left: 0px;
-      z-index: 1;
+      z-index: 9999;
       width: 100%;
       background: rgba(80, 80, 80, 1.0);
       box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.2);

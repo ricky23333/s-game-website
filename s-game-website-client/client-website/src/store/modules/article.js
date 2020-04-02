@@ -68,8 +68,6 @@ const actions = {
    */
   async getArticleList({state, commit}, params) {
     let res = await article.list(params);
-    console.log('article', res.data.date);
-    console.log('page', res.data.page_meta);
     commit('SET_ARTICLE_LIST', res.data.date);
     commit('SET_PAGINATION', res.data.page_meta);
     return res;
