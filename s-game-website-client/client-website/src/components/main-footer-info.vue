@@ -2,12 +2,12 @@
   <div class="footer-box" id="mainFooterBox">
     <section class="title-banner">
       <div class="game-name">
-        <span @click.stop="toPath('/')">STELLARBUG</span>
+        <span>STELLARBUG</span>
       </div>
       <div class="links-container">
         <div class="links-box">
           <li v-for="(item,index) in  linkAry">
-            <a class="link-text" @click.stop="handleClickLinks(item,index)"> {{item.name}} </a>
+            <span class="link-text" @click.stop="handleClickLinks(item,index)"> {{item.name}} </span>
           </li>
         </div>
       </div>
@@ -15,12 +15,21 @@
 
     <section class="info-banner">
       <section class="left-part">
-        <div class="website-info-1">测试测试测试</div>
+        <div class="website-info-1">StellarBug(中文名《星虫》)（暂定）是一个基于Unity2D开发的像素风格的俯视角星际探索类沙盒游戏</div>
         <div class="website-info-2">
-          测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试
+          游戏正处于早期开发阶段，目前仅我一人用爱发电独立制作中。。。若开发者对合作开发此游戏感兴趣，可通过邮箱526046576@qq.com联系我洽谈合作事宜；
+          若玩家对游玩此游戏感兴趣，可关注收藏此网站，实时获取游戏开发动态，在评论区分享你的想法，并在不远的将来第一时间获取最新体验Demo。
+          我将在网站上不定期分享游戏开发日志、技术文章、开源代码以及好玩的东西，欢迎大家常来看看o(∩_∩)o
         </div>
         <div class="website-info-3">
-          Copyright © 2020 - 2020 STELLARBUG. All Rights Reserved
+          Copyright © 2020 - 2020 AHYAYA. All Rights Reserved
+        </div>
+        <div class="links-container-bottom">
+          <div class="links-box">
+            <li v-for="(item,index) in  linkAry">
+              <span class="link-text" @click.stop="handleClickLinks(item,index)"> {{item.name}} </span>
+            </li>
+          </div>
         </div>
       </section>
 
@@ -259,6 +268,9 @@
             padding-top: 230px;
             height: 20px;
           }
+          .links-container-bottom {
+            display: none;
+          }
         }
 
         .right-part {
@@ -476,6 +488,9 @@
             padding-top: 200px;
             height: 20px;
           }
+          .links-container-bottom {
+            display: none;
+          }
         }
 
         .right-part {
@@ -551,7 +566,6 @@
                 color: rgba(250, 250, 250, .6);
               }
               textarea {
-
                 width: 98%;
                 color: rgba(250, 250, 250, .8);
                 background: rgba(20, 20, 20, 0.8);
@@ -658,27 +672,8 @@
             cursor: pointer;
           }
         }
-
         .links-container {
-          width: 100%;
-          border-bottom: 1px solid rgba(200, 200, 200, 0.2);
-          .links-box {
-            display: flex;
-            flex-wrap: nowrap;
-            font-size: 14px;
-            margin-left: -10px;
-            li {
-              margin-left: 10px;
-              list-style: none;
-              line-height: 60px;
-              .link-text {
-                cursor: pointer;
-                &:hover {
-                  color: rgba(250, 250, 250, .9);
-                }
-              }
-            }
-          }
+          display: none;
         }
       }
 
@@ -688,25 +683,46 @@
         justify-content: space-between;
         .left-part {
           width: 100%;
-          border-bottom: 1px solid rgba(200, 200, 200, 0.2);
-          padding-top: 20px;
-          padding-bottom: 20px;
+          padding-top: 10px;
           margin-left: 20px;
           margin-right: 20px;
           .website-info-1, .website-info-2, .website-info-3 {
-            font-size: 14px;
+            font-size: 12px;
             color: rgba(250, 250, 250, .6);
-            line-height: 25px;
+            line-height: 20px;
           }
           .website-info-1 {
-
           }
           .website-info-2 {
-            padding-top: 15px;
+            padding-top: 10px;
           }
           .website-info-3 {
-            padding-top: 15px;
+            padding-top: 10px;
+          }
+          .links-container-bottom {
+            width: 100%;
+            border-top:1px solid rgba(200, 200, 200, 0.2) ;
+            border-bottom: 1px solid rgba(200, 200, 200, 0.2);
+            margin-top: 10px;
 
+            .links-box {
+              display: flex;
+              flex-wrap: nowrap;
+              justify-content: space-between;
+              font-size: 14px;
+              margin-left: -10px;
+              li {
+                margin-left: 10px;
+                list-style: none;
+                line-height: 40px;
+                .link-text {
+                  cursor: pointer;
+                  &:hover {
+                    color: rgba(250, 250, 250, .9);
+                  }
+                }
+              }
+            }
           }
         }
 
@@ -717,10 +733,10 @@
             padding-right: 20px;
             .title-text {
               text-align: left;
-              margin: 30px auto;
-              font-size: 18px;
+              margin: 10px auto;
+              font-size: 16px;
               font-weight: bold;
-              line-height: 25px;
+              line-height: 40px;
             }
             .name-text {
               margin: -10px auto;
@@ -783,6 +799,7 @@
               }
               textarea {
                 width: 98.2%;
+                height: 40px;
                 color: rgba(250, 250, 250, .8);
                 background: rgba(20, 20, 20, 0.8);
                 border: 1px solid rgba(20, 20, 20, 1.0);
@@ -803,10 +820,10 @@
               width: 100%;
               float: right;
               display: flex;
-              flex-wrap: nowrap;
+              flex-wrap: wrap;
               margin-top: 15px;
               .title {
-                font-size: 0.2rem;
+                font-size: 16px;
                 width: 70px;
                 height: 25px;
                 line-height: 35px;
@@ -818,10 +835,10 @@
                 border: 1px solid rgba(20, 20, 20, 1.0);
               }
               input {
-                width: 70%;
+                margin-top: 15px;
+                width: 100%;
                 text-indent: 0.25em;
                 text-align: left;
-                margin-left: 10px;
                 font-size: 14px;
                 height: 25px;
                 border-radius: 2px;
@@ -869,7 +886,7 @@
 
 //修改子组件样式
 <style lang="scss">
-  .footer-box * {
+  .game-name * {
     font-family: 'Ipix';
   }
 </style>

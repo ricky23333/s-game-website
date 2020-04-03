@@ -1,7 +1,7 @@
 <template>
-  <section class="footer-container">
-    <div class="footer-wrap-float" @click.stop="handleExpandWithMobile"
-         :style="'bottom:'+expandHeight+'px;'+'height:'+footerWrapInsideHeight+'px;'"
+  <section class="footer-container"  :style="isMobile?'height:'+footerWrapInsideHeight+'px;':''">
+    <div class="footer-wrap-float"
+         :style="isMobile?'position:absolute;'+'top:'+(fullHeight-60)+'px;'+'height:'+(footerWrapInsideHeight+60)+'px;':'bottom:'+expandHeight+'px;'+'height:'+footerWrapInsideHeight+'px;'"
          v-if="styleType===0">
       <footer class="footer-inner">
         <main-footer-info/>
@@ -33,10 +33,12 @@
         expandSpeed: 80,
         expandHeight: -385,
         styleType: 0,//指示显示折叠样式或者正常样式
-        touchStartX: 0,
-        touchStartY: 0,
-        touchEndX: 0,
-        touchEndY: 0,
+        // touchStartX: 0,
+        // touchStartY: 0,
+        // touchEndX: 0,
+        // touchEndY: 0,
+        resizeHeightFlag: false,
+        fullHeight: document.documentElement.clientHeight,
       }
     },
 
@@ -54,6 +56,17 @@
       windowResizeFlag() {
         this.checkStyleType();
       },
+
+      fullHeight(val) {
+        if (!this.resizeHeightFlag) {
+          this.fullHeight = val
+          this.resizeHeightFlag = true
+          let that = this
+          setTimeout(function () {
+            that.resizeHeightFlag = false
+          }, 400)
+        }
+      }
     },
 
     created() {
@@ -94,18 +107,19 @@
         if (this.expandHeight > 0) this.expandHeight = 0;
       },
 
-      handleExpandWithMobile(e) {
-        this.isMobile = this.$store.getters['user/checkIsMobile'];
-        if (this.isMobile) {
-          if (this.expandHeight < 0) {
-            this.expandHeight = 0;np
-          } else {
-            if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
-              this.expandHeight = this.expandMaxHeight;
-            }
-          }
-        }
-      },
+      // handleExpandWithMobile(e) {
+      //   this.isMobile = this.$store.getters['user/checkIsMobile'];
+      //   if (this.isMobile) {
+      //     if (this.expandHeight < 0) {
+      //       this.expandHeight = 0;
+      //     } else {
+      //       if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+      //         this.expandHeight = this.expandMaxHeight;
+      //       }
+      //     }
+      //   }
+      // },
+
       // handleTouchStart(e) {
       //   e.preventDefault();
       //   this.touchStartX = e.touches[0].pageX;
@@ -136,7 +150,7 @@
         this.styleType = 0;
         this.isMobile = this.$store.getters['user/checkIsMobile'];
         let isSmallScreen = window.matchMedia("(max-width: 575.98px)").matches;
-        if (isSmallScreen) this.expandMaxHeight = -680;
+        if (isSmallScreen) this.expandMaxHeight = -630;
         else this.expandMaxHeight = -385;
         if (this.isMobile) {
           if (this.$route.matched[0].name !== "首页") {
@@ -157,9 +171,9 @@
 
 <style lang="scss" scoped>
   .footer-container {
+    height:100%;
     .footer-wrap-float {
       position: fixed;
-      bottom: 0px;
       left: 0px;
       z-index: 9999;
       width: 100%;

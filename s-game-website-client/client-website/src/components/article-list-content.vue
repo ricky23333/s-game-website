@@ -158,7 +158,7 @@
             color: rgba(20, 20, 20, 0.7);
           }
           .pagination-container {
-            margin-top: 10px;
+   
           }
         }
 

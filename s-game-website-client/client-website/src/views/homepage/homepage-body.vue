@@ -29,6 +29,7 @@
       return {
         selectOptionIndex: null,
         fullHeight: document.documentElement.clientHeight,
+        resizeHeightFlag:false,
         optionsConfig: [
           {
             name: '首页',

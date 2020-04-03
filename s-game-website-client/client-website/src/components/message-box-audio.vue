@@ -271,7 +271,8 @@
           i {
             cursor: pointer;
             position: absolute;
-            margin-left: 305px;
+            margin-left: 275px;
+            margin-top: -30px;
             font-size: 30px;
             font-weight: bold;
             color: rgba(200, 200, 200, 0.8);

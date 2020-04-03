@@ -861,8 +861,8 @@
         background: rgba(250, 250, 250, 1.0);
         border-radius: 53px;
         height: 53px;
-        width: 380px;
-        box-shadow: 0px 0px 3px 2px rgba(180, 180, 180, 0.6);
+        width: 340px;
+        box-shadow: 0 1px 4px 1px rgba(0, 0, 0,0.6);
         align-items: center;
         overflow: hidden;
         transition: all .5s ease;
@@ -900,7 +900,7 @@
           flex-wrap: nowrap;
           .progress-bar {
             cursor: pointer;
-            width: 80px;
+            width: 60px;
             height: 5px;
             background: rgba(20, 20, 20, 0.2);
             border-radius: 5px;
@@ -933,9 +933,9 @@
                 text-align: center;
 
                 i {
-                  font-size: 13px;
+                  font-size: 12px;
                   position: relative;
-                  top: -2px;
+                  top: -3px;
                   color: rgba(250, 250, 250, 1.0);
 
                 }
@@ -988,7 +988,7 @@
           }
 
           .play-btn,.pause-btn {
-            margin-left: 25px;
+            margin-left: 15px;
             font-size: 25px;
             line-height: 45px;
           }
@@ -1000,14 +1000,14 @@
           }
 
           .close-btn {
-            margin-left: 20px;
+            margin-left: 15px;
             font-size: 30px;
             line-height: 45px;
           }
         }
       }
       .audio-box-expand {
-        margin-left: -220px;
+        margin-left: -180px;
       }
       .audio-box {
         width: 160px;
@@ -1023,8 +1023,8 @@
       }
 
       .close-confirm-box {
-        top: -75px;
-        right: 0px;
+        top: 180px;
+        right: 40px;
         position: absolute;
         width: 120px;
         height: 70px;
@@ -1034,6 +1034,7 @@
         box-shadow: 0px 0px 3px 2px rgba(180, 180, 180, 0.4);
         font-size: 14px;
         border-radius: 5px;
+        z-index: 9999;
         .container {
           .first-line {
             padding-top: 10px;

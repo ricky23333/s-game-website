@@ -752,7 +752,7 @@
           height: 35px;
           margin-left: -35px;
           border-radius: 50%;
-          box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.4);
+          box-shadow: 0 1px 4px 1px rgba(0, 0, 0,0.6);
           border: 1px solid #EBEEF5;
           text-align: center;
           line-height: 35px;
@@ -793,7 +793,7 @@
             width: 35px;
             height: 35px;
             border-radius: 50%;
-            box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 1px 4px 1px rgba(0, 0, 0,0.6);
             border: 1px solid #EBEEF5;
             text-align: center;
             line-height: 35px;
@@ -837,7 +837,7 @@
               flex-wrap: nowrap;
               list-style: none;
               background: rgba(250, 250, 250, 1.0);
-              box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.2);
+              box-shadow: 0 1px 4px 1px rgba(0, 0, 0,0.6);
               width: 135px;
               height: 40px;
               margin-left: -145px;

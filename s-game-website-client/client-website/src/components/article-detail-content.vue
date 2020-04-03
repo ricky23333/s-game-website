@@ -1093,7 +1093,7 @@
             position: absolute;
             width: 100%;
             text-align: center;
-            top: 50px;
+            top: 0px;
             color: rgba(250, 250, 250, 0.95);
             text-shadow: black 0.2em 0.2em 0.5em;
             .article-title {

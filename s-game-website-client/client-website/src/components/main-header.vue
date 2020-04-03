@@ -77,6 +77,7 @@
 
     created() {
       this.getGuestInfo();
+      this.getKeywordOnStart();
     },
 
     mounted() {
@@ -687,6 +688,7 @@
         }
 
         .top-banner-homepage {
+          width: 100%;
           font-size: 24px;
           .search-container {
             width: 100%;

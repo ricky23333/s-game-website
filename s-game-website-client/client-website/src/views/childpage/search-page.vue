@@ -14,7 +14,7 @@
               <li class="item-option" v-else>暂无</li>
             </div>
           </div>
-          <div class="second-line">
+          <div class="second-line" v-if="guestDate&&guestDate.router_type">
             <span class="title-text">分类搜索</span>
             <div class="item-box">
               <li class="item"
@@ -42,7 +42,7 @@
             </div>
             <ul class="empty" v-else>暂无文章</ul>
 
-            <div class="pagination-container"
+            <div class="page-container"
                  v-if="searchArticlePagination&&searchArticlePagination.total_page_count>1">
               <Pagination :paginationDate="searchArticlePagination" layouts="prev,pager,next"
                           @changePage="changeArticlePage"/>
@@ -59,7 +59,7 @@
             </div>
             <ul class="empty" v-else>暂无文章</ul>
 
-            <div class="pagination-container" v-if="searchMediaPagination&&searchMediaPagination.total_page_count>1">
+            <div class="page-container" v-if="searchMediaPagination&&searchMediaPagination.total_page_count>1">
               <Pagination :paginationDate="searchMediaPagination" layouts="prev,pager,next"
                           @changePage="changeMediaPage"/>
             </div>
@@ -88,20 +88,16 @@
     },
 
     created() {
-      this.getKeywordOnStart();
-      this.searchArticleOnStart();
-      this.getSearchHistoryDate();
+      this.handleOnStart();
     },
 
     mounted() {
-      this.setPerPageCount();
+
     },
 
     watch: {
       '$route'(to, from) {
-        this.getKeywordOnStart();
-        this.searchArticleOnStart();
-        this.getSearchHistoryDate();
+        this.handleOnStart();
       },
       windowResizeFlag() {
         this.setPerPageCount();
@@ -126,11 +122,20 @@
         clearSearchHistoryDate: 'user/clearSearchHistoryDate',
         getSearchHistoryDate: 'user/getSearchHistoryDate',
         setSearchHistoryDate: 'user/setSearchHistoryDate',
+        getGuestDate: 'user/getUserDate',
       }),
 
+      async handleOnStart() {
+        if (!this.guestDate || !this.guestDate.router_type) {
+          await this.getGuestDate();
+        }
+        this.getKeywordOnStart();
+        this.searchArticleOnStart();
+        this.getSearchHistoryDate();
+        this.setPerPageCount();
+      },
+
       async searchArticleOnStart() {
-
-
         let res1 = await this.handleSearchArticleList(1, this.perPageCount, 'article', this.keyword);
         let res2 = await this.handleSearchArticleList(1, this.perPageCount, 'media', this.keyword);
       },
@@ -203,6 +208,8 @@
           this.perPageCount = 3;
         }
       },
+
+
     },
   }
 </script>
@@ -629,7 +636,6 @@
                 }
               }
               .empty {
-                margin-left: 6%;
                 width: 80%;
                 font-size: 25px;
                 font-weight: bold;
@@ -645,7 +651,7 @@
 </style>
 
 <style lang="scss">
-  .pagination-container {
+  .page-container {
     padding-top: 30px;
     margin-left: -0.5%;
     width: 100%;
