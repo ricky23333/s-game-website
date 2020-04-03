@@ -40,12 +40,12 @@ let router = new Router({
       component: HomepageBody,
     },
     {
-      path: '/development-log',
+      path: '/article',
       name: '日志',
       component: ArticlePageBody,
     },
     {
-      path: '/development-log/:id',
+      path: '/article/:id',
       name: '日志内容',
       component: ArticleDetail,
     },
