@@ -499,20 +499,22 @@
       box-shadow: 0 5px 12px 0 rgba(0, 0, 0, 0.4);
       height: 200px;
       .help-tools-wrap {
-        width: 50%;
+        width: 100%;
         margin: 0px auto;
 
         .help-tools-box {
           display: flex;
           flex-wrap: wrap;
-          font-size: 20px;
+          font-size: 16px;
           font-weight: bold;
-          padding-left: 10px;
-          padding-right: 10px;
+          width: 100%;
           .scale-tool-container {
             margin: 20px auto;
             display: flex;
             flex-wrap: nowrap;
+            .title {
+              width: 100px;
+            }
             .button {
               margin-top: -8px;
               margin-left: 10px;
@@ -621,7 +623,7 @@
             }
 
             .close-button-container {
-              margin-left: 5px;
+              margin-left: 20px;
             }
           }
         }
