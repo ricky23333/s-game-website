@@ -39,6 +39,7 @@
   "dependencies": {
     "@koa/cors": "^2.2.3",
     "chalk": "^3.0.0",
+    "fs": "^0.0.1-security",
     "koa": "^2.7.0",
     "koa-bodyparser": "^4.2.1",
     "koa-mount": "^4.0.0",
