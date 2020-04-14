@@ -492,8 +492,8 @@
 
           .text-box {
             width: 100%;
-            padding-left: 20px;
-            padding-right: 20px;
+            margin-left: 20px;
+            margin-right: 20px;
             .text-html {
               width: 100%;
               background: rgba(0, 0, 0, 0);
@@ -950,10 +950,12 @@
 
           .text-box {
             width: 100%;
-            padding-left: 20px;
-            padding-right: 20px;
+
             .text-html {
-              width: 100%;
+              align-items: center;
+              width: 95%;
+              position: relative;
+              margin: 0 auto;
               background: rgba(0, 0, 0, 0);
               font-size: 18px;
             }
@@ -1491,7 +1493,7 @@
       .bottom-banner-buttons {
         height: 100%;
         .button, .button--active {
-          margin-top:3px;
+          margin-top: 3px;
           margin-left: 10px;
           width: 20px;
           height: 20px;

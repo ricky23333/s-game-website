@@ -2,7 +2,7 @@
 
 module.exports = {
     port: 4000,
-    siteDomain: 'https://server.ahyaya.net/',
+    siteDomain: 'http://localhost:4000',
     countDefault: 10,
     pageDefault: 0,
     apiDir: 'app/api/v1',

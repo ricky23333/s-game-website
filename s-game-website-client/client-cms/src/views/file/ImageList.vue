@@ -97,7 +97,7 @@
                         h('i', {style: 'color: teal'}, item.id),
                         h('br', null, ''),
                         h('span', null, '文件名: '),
-                        h('i', {style: 'color: teal'}, item.name),
+                        h('i', {style: 'color: teal'}, item.name.split('|')[0]),
                         h('br', null, ''),
                         h('span', null, '文件md5: '),
                         h('i', {style: 'color: teal'}, item.md5),

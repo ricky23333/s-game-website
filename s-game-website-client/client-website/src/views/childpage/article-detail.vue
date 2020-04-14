@@ -2,7 +2,7 @@
   <div class="article-detail-container">
     <div class="article-detail-wrap">
       <div class="text-container">
-        <article-detail-content :articleDetail="articleDetail"/>
+        <article-detail-content :articleDetail="articleDetail" @toPath="toPath"/>
       </div>
     </div>
   </div>
@@ -34,10 +34,23 @@
         if (this.updateAllCommentFlag) {
           this.getCommentListDate();
         }
-      }
+      },
+
+      '$route'(to, from) {
+        if (this.id !== this.$route.params.id) {
+          this.id = this.$route.params.id;
+          this.setArticleType();
+          if (!this.id) {
+            this.getSpecialArticle();
+          } else {
+            this.getArticle();
+          }
+        }
+      },
     },
 
     created() {
+      this.id = this.$route.params.id;
       this.setArticleType();
       if (!this.id) {
         this.getSpecialArticle();
@@ -96,7 +109,7 @@
 
       //不通过id，获取关于/隐私政策/用户条款 文章内容
       async getSpecialArticle() {
-        if(this.$route.matched[0].name === "关于"||this.$route.matched[0].name === "隐私政策"||this.$route.matched[0].name === "用户协议"){
+        if (this.$route.matched[0].name === "关于" || this.$route.matched[0].name === "隐私政策" || this.$route.matched[0].name === "用户协议") {
           let res = await this.getArticleDetail({
             main_type: this.$route.query.main_type,
           });
@@ -105,6 +118,10 @@
             document.title = this.articleDetail.title;
           }
         }
+      },
+
+      toPath(id) {
+        this.$router.push('/article/' + id);
       },
     },
   }

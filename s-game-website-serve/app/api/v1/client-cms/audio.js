@@ -48,7 +48,7 @@ audioApi.linPost(
   logger("{user.username}创建了音乐"),
   async ctx => {
     const v = await new CreateAudioValidator().validate(ctx);
-    await AudioDto.createorUpdateAudioWithCms(v, true);
+    await AudioDto.createOrUpdateAudioWithCms(v, true);
     ctx.success({
       msg: "创建音乐成功"
     });
@@ -87,7 +87,7 @@ audioApi.linPut(
   async ctx => {
     const v = await new CreateAudioValidator().validate(ctx);
     const id = getSafeParamId(ctx);
-    await AudioDto.createorUpdateAudioWithCms(v, false, id);
+    await AudioDto.createOrUpdateAudioWithCms(v, false, id);
     ctx.success({
       msg: "更新音乐成功"
     });

@@ -35,8 +35,8 @@
         <template>
             <!-- 弹窗 -->
             <div>
-                <div class="dialog-container" v-if="dialogFormVisible" @click.self="handleClose">
-                    <div class="dialog-box">
+                <div class="video-dialog-container" v-if="dialogFormVisible" @click.self="handleClose">
+                    <div class="video-dialog-box">
                         <!--<video v-if="currentVideoUrl&videoInfo"-->
                         <!--:src="currentVideoUrl"-->
                         <!--class="avatar video-avatar"-->
@@ -46,7 +46,7 @@
                         <video-player
                                 v-if="currentVideoUrl&&videoInfo" :options="videoInfo.playerOption"
                                 :style="videoInfo.videoStyleText"/>
-                        <div class="close-btn" @click.self="handleClose">
+                        <div class="video-close-btn" @click.self="handleClose">
                             X
                         </div>
                     </div>
@@ -167,7 +167,7 @@
                         h('i', {style: 'color: teal'}, item.id),
                         h('br', null, ''),
                         h('span', null, '文件名: '),
-                        h('i', {style: 'color: teal'}, item.name),
+                        h('i', {style: 'color: teal'}, item.name.split('|')[0]),
                         h('br', null, ''),
                         h('span', null, '文件md5: '),
                         h('i', {style: 'color: teal'}, item.md5),
@@ -316,7 +316,7 @@
 </style>
 
 <style lang="scss">
-    .dialog-container {
+    .video-dialog-container {
         position: absolute;
 
         top: 0px;
@@ -327,7 +327,7 @@
         background-color: rgba(0, 0, 0, 0.5);
         width: 100%;
 
-        .dialog-box {
+        .video-dialog-box {
             z-index: 1001;
             width: 90%;
             margin: 2.5% auto;
@@ -335,7 +335,7 @@
             background-color: rgba(255, 255, 255, 1.0);
             border-radius: 5px;
 
-            .close-btn {
+            .video-close-btn {
                 color: white;
                 cursor: pointer;
                 position: absolute;

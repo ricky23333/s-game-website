@@ -400,12 +400,12 @@
       #starsBgImg {
         width: 100%;
         height: 100%;
-        background: no-repeat center;
+        background: repeat center;
       }
       #asteroidsBgImg {
         width: 100%;
         height: 100%;
-        background: no-repeat center;
+        background: repeat center;
         -o-animation: asteroid-float 20s linear infinite;
         -moz-animation: asteroid-float 20s linear infinite;
         -webkit-animation: asteroid-float 20s linear infinite; /*Safari and Chrome*/

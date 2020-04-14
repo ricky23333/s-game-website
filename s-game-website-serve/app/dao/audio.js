@@ -73,7 +73,7 @@ class AudioDao {
     return tempDateAry;
   }
 
-  async createorUpdateAudioWithCms(v, isCreate, audioId) {
+  async createOrUpdateAudioWithCms(v, isCreate, audioId) {
     let audio;
 
     if (isCreate) {
@@ -83,7 +83,7 @@ class AudioDao {
       if (audioId) {
         audio = await Audio.findOne({
           where: {
-            audioId
+            id:audioId
           },
           paranoid: false
         });

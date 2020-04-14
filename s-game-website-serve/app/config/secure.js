@@ -7,7 +7,7 @@ module.exports = {
     dialect: "mysql",
     port: 3306,
     username: "root",
-    password: "gaga!1234",
+    password: "root",
     logging: false,
     timezone: "+08:00"
   },
