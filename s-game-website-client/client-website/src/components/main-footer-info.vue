@@ -22,8 +22,19 @@
           我将在网站上不定期分享游戏开发日志、技术文章、开源代码以及好玩的东西，欢迎大家常来看看o(∩_∩)o
         </div>
         <div class="website-info-3">
-          Copyright © 2020 - 2020 AHYAYA. All Rights Reserved
+          <div class="left-part"> Copyright © 2020 - 2020 AHYAYA. All Rights Reserved</div>
+          <a class="right-part" href="http://www.beian.miit.gov.cn/">豫ICP备20010411号</a>
         </div>
+
+        <!--<div class="website-info-4">-->
+        <!--<div class="third_line">-->
+        <!--<a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=41112202000142">豫ICP证010026 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;豫公网安备41112202000142</a>-->
+        <!--<a class="beianImg" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=41112202000142">-->
+        <!--<img v-lazy="'static/images/homepage/beian.png'" alt="beian">-->
+        <!--</a>-->
+        <!--</div>-->
+        <!--</div>-->
+
         <div class="links-container-bottom">
           <div class="links-box">
             <li v-for="(item,index) in  linkAry">
@@ -267,6 +278,13 @@
           .website-info-3 {
             padding-top: 230px;
             height: 20px;
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            a {
+              text-decoration: none;
+              color: rgba(250, 250, 250, .7);
+            }
           }
           .links-container-bottom {
             display: none;
@@ -487,6 +505,13 @@
           .website-info-3 {
             padding-top: 200px;
             height: 20px;
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            a {
+              color: rgba(250, 250, 250, .7);
+              text-decoration: none;
+            }
           }
           .links-container-bottom {
             display: none;
@@ -698,10 +723,22 @@
           }
           .website-info-3 {
             padding-top: 10px;
+            display: flex;
+            flex-wrap: wrap;
+
+            div {
+              margin-left: 0px;
+              width: 100%;
+            }
+            a {
+              width: 100%;
+              color: rgba(250, 250, 250, .7);
+              text-decoration: none;
+            }
           }
           .links-container-bottom {
             width: 100%;
-            border-top:1px solid rgba(200, 200, 200, 0.2) ;
+            border-top: 1px solid rgba(200, 200, 200, 0.2);
             border-bottom: 1px solid rgba(200, 200, 200, 0.2);
             margin-top: 10px;
 
