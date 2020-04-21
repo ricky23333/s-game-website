@@ -3,7 +3,7 @@
     <div :class="'content'+'-'+articleCssType" v-if="articleDetail">
       <div class="title-info-box">
         <div v-if="articleDetail.head_bg_url" class="title-bg-article"
-             v-lazy:background-image="articleDetail.head_bg_url">
+           :style = "'background-image:url('+articleDetail.head_bg_url+');'" >
           <div class="black-mask"></div>
         </div>
 

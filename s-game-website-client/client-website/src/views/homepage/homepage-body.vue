@@ -2,10 +2,10 @@
   <section class="main">
     <section class="container" v-if="homepageDate" :style="'height:'+fullHeight+'px;'">
       <section class="container-wrap">
-        <div class="game-logo"><img src="static/images/homepage/game-logo.png" alt="LOGO"/></div>
+        <div class="game-logo"><img src="https://cdn.ahyaya.net/images/static/images/homepage/game-logo.png" alt="LOGO"/></div>
         <div class="options-container">
           <li v-for="(item,index) in  optionsConfig">
-            <img v-if="index===selectOptionIndex" class="select-icon" src="static/images/homepage/select-icon.png"
+            <img v-if="index===selectOptionIndex" class="select-icon" src="https://cdn.ahyaya.net/images/static/images/homepage/select-icon.png"
                  alt="ICON">
             <span @mouseover="handleMouseOverOption(index)"
                   @mouseout="handleMouseOutOption(index)"

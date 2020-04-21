@@ -52,11 +52,11 @@
 
         createBlingStarInterval: 5000,
         pauseBlingStarFlag: false,
-        shadowUrl: 'static/images/homepage/bg-shadow.png',
+        shadowUrl: 'https://cdn.ahyaya.net/images/static/images/homepage/bg-shadow.png',
         randomPlanetBgIndexAry: [],
         srcImgUrl: [
           {
-            url: 'static/images/homepage/bg-star.png',
+            url: 'https://cdn.ahyaya.net/images/static/images/homepage/bg-star.png',
             perCutHeight: 256,
             finalCombainRowNum: 8,
             finalCombainLineNum: 5,
@@ -65,7 +65,7 @@
             imgId: 'starsBgImg',
           },
           {
-            url: 'static/images/homepage/bg-asteroid.png',
+            url: 'https://cdn.ahyaya.net/images/static/images/homepage/bg-asteroid.png',
             perCutHeight: 256,
             finalCombainRowNum: 8,
             finalCombainLineNum: 5,
@@ -76,7 +76,7 @@
             scaleAdjustNum: 0.5,
           },
           {
-            url: 'static/images/homepage/bg-nebula.png',
+            url: 'https://cdn.ahyaya.net/images/static/images/homepage/bg-nebula.png',
             perCutHeight: 128,
             finalCombainRowNum: 1,
             finalCombainLineNum: 1,
@@ -85,16 +85,16 @@
             imgId: 'nebulaBgImg',
           },
           {
-            url: 'static/images/homepage/bg-planet.jpg',
+            url: 'https://cdn.ahyaya.net/images/static/images/homepage/bg-planet.jpg',
             perCutHeight: 64,
             maxRandomIndex: 11,
           },
         ],
         srcStarBlingGifUrl: [
-          'static/images/homepage/star-0.gif',
-          'static/images/homepage/star-1.gif',
-          'static/images/homepage/star-2.gif',
-          'static/images/homepage/star-3.gif',
+          'https://cdn.ahyaya.net/images/static/images/homepage/star-0.gif',
+          'https://cdn.ahyaya.net/images/static/images/homepage/star-1.gif',
+          'https://cdn.ahyaya.net/images/static/images/homepage/star-2.gif',
+          'https://cdn.ahyaya.net/images/static/images/homepage/star-3.gif',
         ],
       }
     },
@@ -126,12 +126,12 @@
           let item = this.srcImgUrl[i];
           let image = new Image();
           image.src = item.url;
-          image.setAttribute("crossOrigin", 'Anonymous');
+          image.setAttribute("crossOrigin", 'anonymous');
           image.onload = async () => {
             if (i === 3) {
               let shadowImg = new Image();
               shadowImg.src = this.shadowUrl;
-              shadowImg.setAttribute("crossOrigin", 'Anonymous');
+              shadowImg.setAttribute("crossOrigin", 'anonymous');
               shadowImg.onload = async () => {
                 await this.createPlanetAndMoon(image, item.perCutHeight, item.maxRandomIndex, shadowImg);
               }
