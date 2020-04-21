@@ -2,7 +2,7 @@
   "name": "client-website",
   "version": "1.0.0",
   "description": "A Vue.js project",
-  "author": "s-game",
+  "author": "stellarbug",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",

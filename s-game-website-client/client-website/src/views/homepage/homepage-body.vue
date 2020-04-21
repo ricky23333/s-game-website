@@ -49,7 +49,7 @@
 
     created() {
       this.getHomepageInfo();
-      document.title = "s-game";//收藏夹网页标题
+      document.title = "stellarbug";//收藏夹网页标题
 
     },
 
