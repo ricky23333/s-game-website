@@ -1,5 +1,5 @@
 <template>
-  <section class="footer-container"  :style="isMobile?'height:'+footerWrapInsideHeight+'px;':''">
+  <section class="footer-container" :style="isMobile?'height:'+footerWrapInsideHeight+'px;':''">
     <div class="footer-wrap-float"
          :style="isMobile?'position:absolute;'+'top:'+(fullHeight-60)+'px;'+'height:'+(footerWrapInsideHeight+60)+'px;':'bottom:'+expandHeight+'px;'+'height:'+footerWrapInsideHeight+'px;'"
          v-if="styleType===0">
@@ -50,11 +50,17 @@
 
     watch: {
       '$route'(to, from) {
-        this.checkStyleType();
+        let that = this;
+        setTimeout(() => {
+          that.checkStyleType();
+        }, 100)
       },
 
       windowResizeFlag() {
-        this.checkStyleType();
+        let that = this;
+        setTimeout(() => {
+          that.checkStyleType();
+        }, 100)
       },
 
       fullHeight(val) {
@@ -82,7 +88,10 @@
         document.addEventListener('mousewheel', this.handleScroll, true) || document.addEventListener("DOMMouseScroll", this.handleScroll, false)
       }
 
-      this.checkStyleType();
+      let that = this;
+      setTimeout(() => {
+        that.checkStyleType();
+      }, 500)
     },
 
     destroyed() {
@@ -153,12 +162,12 @@
         if (isSmallScreen) this.expandMaxHeight = -630;
         else this.expandMaxHeight = -385;
         if (this.isMobile) {
-          if (this.$route.matched[0].name !== "首页") {
+          if (this.$route.matched.length > 0 && this.$route.matched[0].name !== "首页") {
             this.styleType = 1;
           }
         }
         else {
-          if (this.$route.params.id || this.$route.matched[0].name === "关于" || this.$route.matched[0].name === "404" || this.$route.matched[0].name === "搜索" || this.$route.matched[0].name === "用户协议" || this.$route.matched[0].name === "隐私政策") {
+          if (this.$route.params.id || (this.$route.matched.length > 0 && (this.$route.matched[0].name === "关于" || this.$route.matched[0].name === "404" || this.$route.matched[0].name === "搜索" || this.$route.matched[0].name === "用户协议" || this.$route.matched[0].name === "隐私政策"))) {
             this.styleType = 1;
           }
         }
@@ -171,7 +180,7 @@
 
 <style lang="scss" scoped>
   .footer-container {
-    height:100%;
+    height: 100%;
     .footer-wrap-float {
       position: fixed;
       left: 0px;

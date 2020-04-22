@@ -41,7 +41,10 @@
           this.id = this.$route.params.id;
           this.setArticleType();
           if (!this.id) {
-            this.getSpecialArticle();
+            let that = this;
+            setTimeout(() => {
+              that.getSpecialArticle();
+            }, 100)
           } else {
             this.getArticle();
           }
@@ -53,7 +56,10 @@
       this.id = this.$route.params.id;
       this.setArticleType();
       if (!this.id) {
-        this.getSpecialArticle();
+        let that = this;
+        setTimeout(() => {
+          that.getSpecialArticle();
+        }, 100)
       } else {
         this.getArticle();
       }

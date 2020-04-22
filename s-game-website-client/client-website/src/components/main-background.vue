@@ -91,10 +91,10 @@
           },
         ],
         srcStarBlingGifUrl: [
-          'https://cdn.ahyaya.net/images/static/images/homepage/star-0.gif',
-          'https://cdn.ahyaya.net/images/static/images/homepage/star-1.gif',
-          'https://cdn.ahyaya.net/images/static/images/homepage/star-2.gif',
-          'https://cdn.ahyaya.net/images/static/images/homepage/star-3.gif',
+          'static/images/homepage/star-0.gif',
+          'static/images/homepage/star-1.gif',
+          'static/images/homepage/star-2.gif',
+          'static/images/homepage/star-3.gif',
         ],
       }
     },

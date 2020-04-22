@@ -1,5 +1,5 @@
 //axios 基本配置，配置访问的服务端接口路径
-import axios from 'axios';
+import axios from 'Axios';
 
 let mainService = {};
 

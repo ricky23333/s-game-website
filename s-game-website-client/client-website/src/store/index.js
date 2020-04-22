@@ -1,8 +1,8 @@
 //vue状态管理默认入口文件，用于全局参数管理
-import Vue from 'vue';
+// import Vue from 'vue';
 import Vuex from 'vuex';
 
-Vue.use(Vuex);
+// Vue.use(Vuex);
 
 const store = new Vuex.Store({
   mutations: {},

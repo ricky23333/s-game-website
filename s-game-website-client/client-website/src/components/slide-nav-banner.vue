@@ -13,7 +13,7 @@
       <div class="nav-banner-container">
         <div class="nav-banner-box">
           <el-tooltip content="掷个骰子" placement="top" effect="light" :open-delay="isMobile?99999999:1000"
-                      v-if="this.$route.matched[0].name === '首页'||documentWidth>=1140">
+                      v-if="isHomePage||documentWidth>=1140">
             <div class="switch-bg-btn" id="switchBgBtn"
                  @click.stop="handleClickPublic">
               <i id="switchBgIcon" class="icon el-icon-refresh-right"></i>
@@ -119,11 +119,23 @@
       }),
 
       isArticlePage() {
-        return ((this.$route.matched[0].name === "媒体内容" || this.$route.matched[0].name === "日志内容") && this.$route.params.id) || this.$route.matched[0].name === "关于" || this.$route.matched[0].name === "隐私政策" || this.$route.matched[0].name === "用户协议";
+        if (this.hasRoute) {
+          return ((this.$route.matched[0].name === "媒体内容" || this.$route.matched[0].name === "日志内容") && this.$route.params.id) || this.$route.matched[0].name === "关于" || this.$route.matched[0].name === "隐私政策" || this.$route.matched[0].name === "用户协议";
+        }
+        return false;
       },
       documentWidth() {
         return document.documentElement.clientHeight;
       },
+      hasRoute() {
+        return this.$route.matched.length > 0;
+      },
+      isHomePage() {
+        if (this.hasRoute) {
+          return this.$route.matched[0].name === '首页'
+        }
+        return false
+      }
     },
 
     mounted() {
@@ -764,7 +776,7 @@
             height: 35px;
             margin-left: -35px;
             border-radius: 50%;
-            box-shadow: 0 1px 4px 1px rgba(0, 0, 0,0.6);
+            box-shadow: 0 1px 4px 1px rgba(0, 0, 0, 0.6);
             border: 1px solid #EBEEF5;
             text-align: center;
             line-height: 35px;
@@ -805,7 +817,7 @@
               width: 35px;
               height: 35px;
               border-radius: 50%;
-              box-shadow: 0 1px 4px 1px rgba(0, 0, 0,0.6);
+              box-shadow: 0 1px 4px 1px rgba(0, 0, 0, 0.6);
               border: 1px solid #EBEEF5;
               text-align: center;
               line-height: 35px;
@@ -849,7 +861,7 @@
                 flex-wrap: nowrap;
                 list-style: none;
                 background: rgba(250, 250, 250, 1.0);
-                box-shadow: 0 1px 4px 1px rgba(0, 0, 0,0.6);
+                box-shadow: 0 1px 4px 1px rgba(0, 0, 0, 0.6);
                 width: 135px;
                 height: 40px;
                 margin-left: -145px;
