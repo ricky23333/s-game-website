@@ -87,9 +87,9 @@
         checkScrollFlag: false,  //检测scroll防抖
 
         shareButtonList: [
-          'https://cdn.ahyaya.net/images/static/images/homepage/share_qq.svg',
-          'https://cdn.ahyaya.net/images/static/images/homepage/share_qzone.svg',
-          'https://cdn.ahyaya.net/images/static/images/homepage/share_weibo.svg',
+          'static/images/homepage/share_qq.svg',
+          'tatic/images/homepage/share_qzone.svg',
+          'static/images/homepage/share_weibo.svg',
         ],
       }
     },
