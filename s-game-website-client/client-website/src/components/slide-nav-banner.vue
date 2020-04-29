@@ -88,7 +88,7 @@
 
         shareButtonList: [
           'static/images/homepage/share_qq.svg',
-          'tatic/images/homepage/share_qzone.svg',
+          'static/images/homepage/share_qzone.svg',
           'static/images/homepage/share_weibo.svg',
         ],
       }
