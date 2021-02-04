@@ -5,7 +5,7 @@ module.exports = {
     database: "s_game_website",
     host: "localhost",
     dialect: "mysql",
-    port: 3306,
+    port: 3310,
     username: "root",
     password: "root",
     logging: false,

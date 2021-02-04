@@ -61,9 +61,9 @@
         created() {
             const _this = this
             this.tinymceInit = {
-                language_url: `${this.baseUrl}/tinymce/langs/zh_CN.js`,
-                skin_url: `${this.baseUrl}/tinymce/skins/ui/oxide`,
-                content_css: `${this.baseUrl}/tinymce/skins/content/default/content.css`,
+                language_url: `${this.baseUrl}/cms/tinymce/langs/zh_CN.js`,
+                skin_url: `${this.baseUrl}/cms/tinymce/skins/ui/oxide`,
+                content_css: `${this.baseUrl}/cms/tinymce/skins/content/default/content.css`,
                 language: 'zh_CN',
                 height: this.height,
                 width: undefined,

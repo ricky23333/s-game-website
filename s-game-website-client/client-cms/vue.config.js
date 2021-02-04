@@ -7,7 +7,7 @@ function resolve(dir) {
 module.exports = {
     lintOnSave: true,
     productionSourceMap: false,
-    baseUrl: './',
+    publicPath: './',
     // assetsDir: 'static',
     chainWebpack: (config) => {
         config.resolve.alias

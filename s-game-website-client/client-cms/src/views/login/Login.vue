@@ -5,7 +5,7 @@
 
             <form class="login-form" autocomplete="off" @submit.prevent="throttleLogin()">
                 <div class="title">
-                    <h1 title="nanjiecun">网站后台管理系统</h1>
+                    <h1 title="stellarbug">网站后台管理系统</h1>
                 </div>
                 <div class="form-item nickname">
                     <input type="text" v-model="form.username" autocomplete="off" placeholder="请填写用户名"

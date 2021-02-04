@@ -1,7 +1,7 @@
 {
-  "name": "nanjiecun-website",
+  "name": "stellar-bug-server",
   "version": "0.1.0",
-  "description": "nanjiecun website service&cms by koa",
+  "description": "stellarbug website service&cms by koa",
   "main": "app/starter.js",
   "scripts": {
     "start:dev": "cross-env NODE_ENV=development nodemon",

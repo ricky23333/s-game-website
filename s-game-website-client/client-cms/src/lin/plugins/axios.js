@@ -7,7 +7,8 @@ import store from '@/store'
 import { getToken, saveAccessToken } from '@/lin/utils/token'
 
 const config = {
-  baseURL: Config.baseURL || process.env.apiUrl || '',
+  // baseURL: Config.baseURL || process.env.apiUrl || '',
+  baseURL:  (process.env.NODE_ENV === 'development' ? 'http://localhost:4000' :'https://' + window.location.host +'/server/api') +'/v1/client-cms',
   timeout: 100 * 1000, // 请求超时时间设置
   crossDomain: true,
   // withCredentials: true, // Check cross-site Access-Control
